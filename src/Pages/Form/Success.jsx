@@ -1,0 +1,278 @@
+import axios from "axios";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { backendbaseuri } from "../../Config";
+import { useNavigate } from "react-router-dom";
+
+const C1 = ({ data }) => {
+  const [showSummary, setShowSummary] = useState(false);
+  const navigate = useNavigate();
+
+  return (
+    <div className="flex justify-end box:w-[54vw] overflow-auto">
+      <div className="w-screen sm:w-[36rem] h-screen flex flex-col justify-between px-4 sm:px-0 box:mx-14 box:ml-4">
+        <div>
+          <div>
+            <h1 className="font-normal text-3xl mb-4 mt-3 box:mt-16">
+              fittlyf
+            </h1>
+
+            <div className="flex flex-col box:hidden bg-gray-100">
+              <div className="flex justify-between items-center py-4 px-2">
+                <button
+                  onClick={() => {
+                    setShowSummary(!showSummary);
+                  }}
+                >
+                  <div className="text-red-500 text-sm">
+                    <i className="fa-solid fa-cart-shopping mr-2"></i>Show order
+                    summary<i className="ml-2 fa-solid fa-chevron-down"></i>
+                  </div>
+                </button>
+                <div>
+                  {/* <p className="my-2">{`${data.period} ₹ ${data.price} ${data.bottle} bottle ${data.tablets} tablets`}</p> */}
+                  <span className="font-semibold text-lg">
+                    ₹{`${data.price}`}
+                  </span>
+                </div>
+              </div>
+
+              {showSummary && (
+                <div>
+                  <hr className="bg-gray-300" />
+                  <div className="p-2">
+                    <div className="flex text-sm space-x-3 justify-between items-center my-5">
+                      <img
+                        className="w-20"
+                        src="https://cdn.shopify.com/s/files/1/0618/6765/5415/products/1_small.png?v=1654409191"
+                        alt=""
+                      />
+                      <div className="flex xl:w-96 flex-col">
+                        <h4 className="font-semibold">
+                          YOSHA PCOS PCOD tablets | Delayed Periods | Ayurvedic
+                        </h4>
+                        <p className="my-2">{`${data.duration} Months ₹ ${data.price} ${data.bottles} bottle ${data.tablets} tablets`}</p>
+                      </div>
+                      <span className="font-semibold">₹{`${data.price}`}</span>
+                    </div>
+
+                    <hr className="bg-gray-300" />
+
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h5 className="my-5">Subtotal</h5>
+                        <h5 className="my-5">Shipping</h5>
+                      </div>
+                      <div className="text-right">
+                        <h5 className="font-semibold my-4">
+                          ₹{`${data.price}`}
+                        </h5>
+                        <h5 className="font-semibold my-4">Free</h5>
+                      </div>
+                    </div>
+
+                    <hr className="bg-gray-300" />
+
+                    <div className="flex items-center justify-between my-5">
+                      <div>
+                        <div className="font-semibold">Total</div>
+                        <div className="text-xs">Including ₹76.12 in taxes</div>
+                      </div>
+                      <div>
+                        <span className="text-sm">INR</span>
+                        <span className="font-semibold text-2xl">
+                          ₹{`${data.price}`}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <hr className="bg-gray-300" />
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="border rounded p-3 my-4">
+            <h1 className="mb-2">Your order is confirmed</h1>
+            <p className="text-sm">
+              You'll recieve confirmation email with your order number shortly
+            </p>
+          </div>
+
+          <div className="border rounded p-3 my-4">
+            <h1 className="mb-2">Order updates</h1>
+            <p className="text-sm">
+              You'll get shipping and delivery updates by email
+            </p>
+          </div>
+          {data.cod && (
+            <div className="border rounded p-3 my-4">
+              <p className="text-sm">
+                Congrats, your COD order is confirmed...
+              </p>
+              <p className="text-sm">-</p>
+              <p className="text-sm">
+                1. You'll recieve courier tracking number by email, SMS
+              </p>
+              <p className="text-sm">-</p>
+              <p className="text-sm">
+                3. Courier boy will call you for delivery
+              </p>
+              <p className="text-sm">-</p>
+              <p className="text-sm">4. Pay at the time of delivery</p>
+              <p className="text-sm">-</p>
+            </div>
+          )}
+          <div className="border rounded p-3 my-4">
+            <h1>Customer information</h1>
+            <p className="text-sm font-semibold mt-2">Contact information</p>
+            <p className="text-sm mt-2">{data.emailPhoneNumber}</p>
+            <p className="text-sm font-semibold mt-4">Shipping Address</p>
+            {
+              !data.ShippingAddress && !data.ShippingPin && <p className="text-sm" >Same as Billing Address</p>
+            }
+            <p className="text-sm">{data.ShippingAddress}</p>
+            <p className="text-sm">{data.ShippingOtherAddress}</p>
+            <p className="text-sm">{`${data.ShippingPin} ${data.ShippingCity} ${data.ShippingState}`}</p>
+            <p className="text-sm">{data.ShippingCountry}</p>
+            <p className="text-sm font-semibold mt-2">Shipping Method</p>
+            <p className="text-sm mt-2">
+              {data.cod ? `Cash on Delivery (COD)` : "Prepaid - Free Shipping"}
+            </p>
+            <p className="text-sm font-semibold mt-2">Payment Method</p>
+            <p className="text-sm mt-2">
+              {data.cod ? `Cash on Delivery (COD)` : "Prepaid - Free Shipping"}{" "}
+              - INR {`${data.price}`}
+            </p>
+            <p className="text-sm font-semibold mt-2">Billing Address</p>
+            <p className="text-sm mt-2">{`${data.firstName} ${data.lastName}`}</p>
+            <p className="text-sm">{data.address}</p>
+            <p className="text-sm">{data.apartmentAndOthers}</p>
+            <p className="text-sm">{`${data.zip} ${data.city} ${data.state}`}</p>
+            <p className="text-sm">{data.country}</p>
+            <p className="text-sm">{data.PhoneNumber}</p>
+          </div>
+
+          <div className="mb-5">
+            <a href="https://www.fittlyf.com/">
+              <button className="text-sm text-white bg-red-500 rounded-md py-6 sm:py-4 px-6 font-semibold w-full">
+                <div>Continue Shopping</div>
+              </button>
+            </a>
+          </div>
+
+          <div className="flex justify-center items-center mb-5">
+            <p className="text-sm">
+              Need help?{" "}
+              <span className="text-red-500 font-semibold">Contact us</span>
+            </p>
+          </div>
+
+          <hr className="bg-gray-300" />
+
+          <div className="text-red-500 my-4 text-xs">Shipping Policy</div>
+        </div>
+
+        <div>
+          <hr className="bg-gray-300" />
+
+          <div className="text-gray-500 my-4 text-xs">
+            All Rights Reserved fittlyf
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const C2 = ({ data }) => {
+
+  return (
+    <div className="bg-gray-50">
+      <div className="h-screen w-[46vw]">
+        <div className="p-12 max-w-[510px]">
+          <div className="flex text-sm space-x-3 justify-center items-center my-5">
+            <img
+              className="w-20"
+              src="https://cdn.shopify.com/s/files/1/0618/6765/5415/products/1_small.png?v=1654409191"
+              alt=""
+            />
+            <div className="flex xl:w-96 flex-col">
+              <h4 className="font-semibold">
+                YOSHA PCOS PCOD tablets | Delayed Periods | Ayurvedic
+              </h4>
+              {data && (
+                <p className="my-2">{`${data.duration} Months ${data.bottles} bottle ${data.tablets} tablets`}</p>
+              )}
+            </div>
+            <span className="font-semibold">{`₹${data.price}`}</span>
+          </div>
+
+          <hr className="bg-gray-300" />
+
+          <div className="flex items-center justify-between">
+            <div>
+              <h5 className="my-5">Subtotal</h5>
+              <h5 className="my-5">Shipping</h5>
+            </div>
+            <div className="text-right">
+              <h5 className="font-semibold my-4">{`₹${data.price}`}</h5>
+              <h5 className="font-semibold my-4">Free</h5>
+            </div>
+          </div>
+
+          <hr className="bg-gray-300" />
+
+          <div className="flex items-center justify-between my-5">
+            <div>
+              <div className="font-semibold">Total</div>
+              <div className="text-xs">Including ₹76.12 in taxes</div>
+            </div>
+            <div>
+              <span className="text-sm">INR</span>
+              <span className="font-semibold text-2xl">{`₹${data.price}`}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Form = () => {
+  const { id } = useParams();
+  const [data, sd] = useState(false);
+  useEffect(() => {
+    axios
+      .post(`${backendbaseuri}orders/get`, {
+        id: id,
+      })
+      .then((res) => {
+        axios
+          .post(`${backendbaseuri}api/send/order/getproductdata`, {
+            sku: res.data.sku,
+          })
+          .then((data) => {
+            sd({ ...res.data, ...data.data.data.data.pack });
+          });
+      });
+  }, []);
+  return (
+    <>
+      {data && (
+        <div id="Form">
+          <div className="flex items-center justify-center">
+            <C1 data={data} />
+            <div className="border-r h-screen hidden box:block bg-gray-300"></div>
+            <div className="hidden box:block">
+              <C2 data={data} />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Form;
