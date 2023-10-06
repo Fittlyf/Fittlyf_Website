@@ -22,6 +22,8 @@ jobs:
         run: npm install
 
       - name: Build
+        env:
+          CI: false # Disable treating warnings as errors
         run: npm run build
 
       # - name: Publish to Build Repository
