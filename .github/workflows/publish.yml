@@ -28,9 +28,9 @@ jobs:
 
       - name: Publish to Build Repository
         run: |
-          git clone https://github.com/Fittlyf/Fittlyf_Website.git build-repo
+          git clone git@github.com:Fittlyf/Fittlyf_Website.git build-repo
           cd build-repo
-          git config user.name "Tejas Vaij"
+          git config user.name "TechManTejas"
           git config user.email "techmantejas@gmail.com"
           rm -rf *
           cp -r ../build/* .
