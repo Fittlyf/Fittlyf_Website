@@ -26,9 +26,19 @@ jobs:
           CI: false # Disable treating warnings as errors
         run: npm run build
 
+      - name: Configure SSH Key and Clone Repository
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          mkdir -p /tmp/ssh
+          ssh-keyscan github.com >> /tmp/ssh/known_hosts
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+          git clone git@github.com:Fittlyf/Fittlyf_Website.git build-repo
+        shell: bash
+
       - name: Publish to Build Repository
         run: |
-          git clone git@github.com:Fittlyf/Fittlyf_Website.git build-repo
           cd build-repo
           git config user.name "TechManTejas"
           git config user.email "techmantejas@gmail.com"
