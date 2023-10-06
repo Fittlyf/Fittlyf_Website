@@ -13,25 +13,25 @@ jobs:
       - name: git-checkout
         uses: actions/checkout@v3
 
-      - name: Set Up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+      # - name: Set Up Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
 
-      - name: Install all dependencies
-        run: npm install
+      # - name: Install all dependencies
+      #   run: npm install
 
-      - name: Build
-        run: npm run build
+      # - name: Build
+      #   run: npm run build
 
-      - name: Publish to Build Repository
-        run: |
-          git clone https://github.com/Fittlyf/Fittlyf_Website.git build-repo
-          cd build-repo
-          git config user.name "Your Name"
-          git config user.email "youremail@example.com"
-          rm -rf *
-          cp -r ../build/* .
-          git add .
-          git commit -m "Update build"
-          git push origin main
+      # - name: Publish to Build Repository
+      #   run: |
+      #     git clone https://github.com/Fittlyf/Fittlyf_Website.git build-repo
+      #     cd build-repo
+      #     git config user.name "Your Name"
+      #     git config user.email "youremail@example.com"
+      #     rm -rf *
+      #     cp -r ../build/* .
+      #     git add .
+      #     git commit -m "Update build"
+      #     git push origin main
