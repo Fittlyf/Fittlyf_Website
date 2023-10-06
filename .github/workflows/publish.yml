@@ -26,14 +26,14 @@ jobs:
           CI: false # Disable treating warnings as errors
         run: npm run build
 
-      # - name: Publish to Build Repository
-      #   run: |
-      #     git clone https://github.com/Fittlyf/Fittlyf_Website.git build-repo
-      #     cd build-repo
-      #     git config user.name "Your Name"
-      #     git config user.email "youremail@example.com"
-      #     rm -rf *
-      #     cp -r ../build/* .
-      #     git add .
-      #     git commit -m "Update build"
-      #     git push origin main
+      - name: Publish to Build Repository
+        run: |
+          git clone https://github.com/Fittlyf/Fittlyf_Website.git build-repo
+          cd build-repo
+          git config user.name "Tejas Vaij"
+          git config user.email "techmantejas@gmail.com"
+          rm -rf *
+          cp -r ../build/* .
+          git add .
+          git commit -m "Update build"
+          git push origin main
