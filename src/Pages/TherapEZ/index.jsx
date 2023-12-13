@@ -209,7 +209,7 @@ export default function TherapEZ() {
                             </div>
                             <div>
                                 <h3 className="text-2xl md:text-4xl sm:mb-4 font-semibold">
-                                    EZ Exercise Tracking
+                                    EZ Patient Tracking
                                 </h3>
                                 <p className="sm:leading-relaxed mt-2 sm:mt-4 opacity-70 max-w-2xl">
                                     Free up your time while patients exercise at home. We monitor progress, so you focus on new patients and your clinic growth.
@@ -278,7 +278,7 @@ export default function TherapEZ() {
                             </div>
                             <div>
                                 <h3 className="text-2xl md:text-4xl sm:mb-4 font-semibold">
-                                    EZ Home Routine Monitor
+                                    EZ Monitor and Updates
                                 </h3>
                                 <p className="sm:leading-relaxed mt-2 sm:mt-4 opacity-70 max-w-2xl">
                                     Receive alerts when patients skip home exercises. Offer tailored solutions like in-clinic sessions or virtual consultations for personalized care.

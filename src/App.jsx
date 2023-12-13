@@ -44,7 +44,7 @@ const App = () => {
         <Route exact path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route exact path="/paperform" element={<Paperform />} />
-        <Route exact path="/phone-verification" element={<PhoneVerification />} />
+        {/* <Route exact path="/phone-verification" element={<PhoneVerification />} /> */}
         <Route exact path="/diet-plan" element={<DietPlan />} />
       </Routes>
       <Notify />
