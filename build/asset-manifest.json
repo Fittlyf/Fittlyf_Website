@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.94ab2cf0.css",
-    "main.js": "/static/js/main.9fe776ea.js",
+    "main.css": "/static/css/main.4a33450e.css",
+    "main.js": "/static/js/main.1033b66e.js",
     "static/media/Fittlyf_pcos_hero.mp4": "/static/media/Fittlyf_pcos_hero.4cb1e0adf0cde9278f7a.mp4",
     "static/media/vegan.jpg": "/static/media/vegan.645663c26f3d452c1bc7.jpg",
     "static/media/women.png": "/static/media/women.b8dd55de65b78dc51383.png",
@@ -34,11 +34,11 @@
     "static/media/footImg.png": "/static/media/footImg.27a18deb4b2cb2f1a13e.png",
     "static/media/i2.png": "/static/media/i2.00875279f2150b84aff4.png",
     "index.html": "/index.html",
-    "main.94ab2cf0.css.map": "/static/css/main.94ab2cf0.css.map",
-    "main.9fe776ea.js.map": "/static/js/main.9fe776ea.js.map"
+    "main.4a33450e.css.map": "/static/css/main.4a33450e.css.map",
+    "main.1033b66e.js.map": "/static/js/main.1033b66e.js.map"
   },
   "entrypoints": [
-    "static/css/main.94ab2cf0.css",
-    "static/js/main.9fe776ea.js"
+    "static/css/main.4a33450e.css",
+    "static/js/main.1033b66e.js"
   ]
 }
